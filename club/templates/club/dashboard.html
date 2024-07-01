@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>대시보드</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .progress-bar {
+            width: 100%;
+            background-color: #f3f3f3;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .progress {
+            height: 20px;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="{% url 'schedule_list' %}">동아리 일정</a>
+        <a href="{% url 'dashboard' %}">대시보드</a>
+        <a href="{% url 'post_list' %}">게시글</a>
+    </div>
+    <div class="content">
+        <h1>대시보드</h1>
+        <a class="button" href="{% url 'dashboard_add' %}">진행 상태 추가</a>
+        <ul>
+            {% for dashboard in object_list %}
+            <li>
+                <strong>{{ dashboard.user }}</strong>:
+                <div class="progress-bar">
+                    <div class="progress" style="width:{{ dashboard.progress }}%">
+                        {{ dashboard.progress }}%
+                    </div>
+                </div>
+                <p>{{ dashboard.description }}</p>
+                <a class="button" href="{% url 'dashboard_update' dashboard.pk %}">수정</a>
+                <a class="button" href="{% url 'dashboard_delete' dashboard.pk %}">삭제</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

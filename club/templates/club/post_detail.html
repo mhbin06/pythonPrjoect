@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <a href="{% url 'schedule_list' %}">동아리 일정</a>
+        <a href="{% url 'dashboard' %}">대시보드</a>
+        <a href="{% url 'post_list' %}">게시글</a>
+    </div>
+    <div class="content">
+        <h1>게시글 상세</h1>
+        <p>제목: {{ object.title }}</p>
+        <p>내용: {{ object.content }}</p>
+        <p>작성자: {{ object.author }}</p>
+        <p>작성일: {{ object.created_at }}</p>
+        <a class="button" href="{% url 'post_update' object.pk %}">수정</a>
+        <a class="button" href="{% url 'post_delete' object.pk %}">삭제</a>
+    </div>
+</body>
+</html>

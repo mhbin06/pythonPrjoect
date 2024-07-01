@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>일정 상세</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <a href="{% url 'schedule_list' %}">동아리 일정</a>
+        <a href="{% url 'dashboard' %}">대시보드</a>
+        <a href="{% url 'post_list' %}">게시글</a>
+    </div>
+    <div class="content">
+        <h1>일정 상세</h1>
+        <p>제목: {{ object.title }}</p>
+        <p>설명: {{ object.description }}</p>
+        <p>날짜: {{ object.date }}</p>
+        <a href="{% url 'schedule_update' object.pk %}">수정</a>
+        <a href="{% url 'schedule_delete' object.pk %}">삭제</a>
+    </div>
+</body>
+</html>
